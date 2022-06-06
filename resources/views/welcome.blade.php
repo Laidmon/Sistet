@@ -63,38 +63,90 @@
                     </div>
                 </div>
                 <div class="row mb-2">
+                    <div class="col-md-6"> 
+                        <h2 class="m-2">Las mejores empresas del pais</h2> 
+                <?php
+                    if (!$companies->count()){
+                        echo "<label for='exampleFormControlTextarea1'>No existen empresas</label>";
+                    }else{
+                        foreach ($companies as $com){
+                            echo "<div class='card mb-2'><div class='card-header'><h5 class='card-title'>";
+                            echo $com->name;
+                            echo "</h5>";     
+                            echo "<h6 class='card-subtitle mb-2 text-muted'>";     
+                            echo "Puntuación";     
+                            echo "</h6></div> ";                                 
+                            echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";      
+                            echo "Puntuación";                                  
+                            echo "<p class='card-text mb-auto'>";                              
+                            echo $com->description;                  
+                            echo "</p><a href='#' class='card-link'>Leer el comentario completo</a></div></div>";   
+                        }
+                    }                                          
+                ?>
+                                         
+                            <h2 class="m-2">Las Peores empresas del pais</h2>  
+
+                            <?php
+                    if (!$companies->count()){
+                        echo "<label for='exampleFormControlTextarea1'>No existen empresas</label>";
+                    }else{
+                        foreach ($companies as $com){
+                            echo "<div class='card mb-2'><div class='card-header'><h5 class='card-title'>";
+                            echo $com->name;
+                            echo "</h5>";     
+                            echo "<h6 class='card-subtitle mb-2 text-muted'>";     
+                            echo "Puntuación";     
+                            echo "</h6></div> ";                                 
+                            echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";      
+                            echo "Puntuación";                                  
+                            echo "<p class='card-text mb-auto'>";                              
+                            echo $com->description;                  
+                            echo "</p><a href='#' class='card-link'>Leer el comentario completo</a></div></div>";   
+                        }
+                    }                                          
+                ?>
+                </div>
                     <div class="col-md-6">
-                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                            
-                             <h2 class="mb-0">Las mejores empresas del pais</h2>
                             <div class="col p-4 d-flex flex-column position-static">
-                            <strong class="d-inline-block mb-2 text-primary">Puntuación</strong>
-                            <h3 class="mb-0">Empresa 1</h3>
-                            <div class="mb-1 text-muted">Nov 12</div>
-                            <p class="card-text mb-auto">blablabla...</p>
-                            <a href="#" class="stretched-link">Leer el comentario completo</a>
+                                <h2 class="mb-0">Buscador</h3>
+                                <form action="buscador" class="form-inline mt-2 mt-md-0">
+                                    <input type="hidden" name="_token" value=""> 
+                                    <input type="text" placeholder="Buscar" aria-label="Search" name="search" class="form-control mr-sm-2"> 
+                                    <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Buscar</button> 
+                                    <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Filtro de búsqueda</button>
+                                </form>
                             </div>
-                            
-                            
-                            <h2 class="mb-0">Las Peores empresas del pais</h2>
-                            <div class="col p-4 d-flex flex-column position-static">
-                            <strong class="d-inline-block mb-2 text-primary">Puntuación</strong>
-                            <h3 class="mb-0">Empresa 1</h3>
-                            <div class="mb-1 text-muted">Nov 12</div>
-                            <p class="card-text mb-auto">blablabla...</p>
-                            <a href="#" class="stretched-link">Leer el comentario completo</a>
+                            <div class="card">                           
+                                <div class="card-body">
+                                    <h5 class="card-title">Empresa 1</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Puntuación</h6>
+                                    <p class="card-text mb-auto">blablabla...</p>
+                                    <a href="#" class="card-link">Leer el comentario completo</a>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                            <div class="col p-4 d-flex flex-column position-static">
-                            <h2 class="mb-0">Busca la empresa</h3>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </main>
+    </div>
+    <div class="container">
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <h1>Sistet Project</h1>
+            <small class="d-block mb-3 text-muted">© 2022</small>
+          </div>
+          <div class="col-12 col-md">
+            <h5>About Sistet Project</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="https://www.um.es/aroseproject/objetives/">Objectives</a></li>
+              <li><a class="text-muted" href="https://www.um.es/aroseproject/partners/">Partners</a></li>
+              <li><a class="text-muted" href="https://www.um.es/aroseproject/contact/">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
     </body>
 </html>

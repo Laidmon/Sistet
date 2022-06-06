@@ -14,10 +14,13 @@ use App\Models\Company;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get('/','App\Http\Controllers\Companylist@welcome');
 
 Route::get('/nuevo',function(){
     return view ('newcom');
@@ -27,6 +30,9 @@ Route::get('/nuevaemp',function(){
     return view ('newcmpy');
 });
 
+Route::get('/buscador',function(){
+    return view ('search');
+});
 
 
 Route::get('/insertar',function(){
