@@ -57,7 +57,9 @@
                     <h1 class="display-4 fst-italic">¿Qué tal te ha ido con la empresa?</h1>
                     <p class="lead my-3">Esta es la pregunta que muchas veces nos hacen y que nos dá miedo contestar. Ahora podrás dar tu opinión completamente anónima acerca de esa empresa que te trató mal en algún momento o con la que hayas tenido la mejor experiencia de tu vida.</p>                    
                     <h2 class="display-4 fst-italic">¿Empezamos?</h2>
-                    <button type="submit" class="btn btn-primary">Escribe tu comentario</button>
+                    <form action="select">
+                        <button type="submit" class="btn btn-primary">Escribe tu comentario</button>
+                    </form>
                     </div>
                 </div>
                 <div class="row mb-2">

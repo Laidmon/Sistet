@@ -7,19 +7,30 @@
                 <div class="card-header">{{ __('Selecciona la empresa') }}</div>
 
                 <div class="card-body">
-            <form>
-                <div class="form-group mb-2">
-                    <label for="exampleFormControlTextarea1">Nombre de la empresa</label>
-                    <select class="form-control form-control-lg mb-1">
-                         <option>Carnica de mierda</option>
-                         <option>Carnica de mierda2</option>
-                    </select>
-                    <label for="exampleFormControlTextarea1 mb-1">Descripción</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem harum qui eos consequuntur modi id sed quia excepturi esse omnis, expedita repellendus aliquid incidunt, natus dolores doloribus corporis nam mollitia.</textarea>
-                </div>                
-                <button type="submit" class="btn btn-primary">Crea comentario</button>
+            <form action="seleccionar">
+                <?php                
+                    echo "<div class='form-group mb-2'>";
+                    if (!$companies->count()){
+                        echo "<label for='exampleFormControlTextarea1'>No existen empresas</label>";
+                    }else{
+                        echo "<label for='exampleFormControlTextarea1'>Nombre de la empresa</label>";
+                        echo "<select class='form-control form-control-lg mb-1'>";
+                        foreach ($companies as $com){
+                            echo "<option>";
+                            echo $com->name;
+                            echo "</option>";        
+                        }    
+                        echo "</select>";
+                        echo "<label for='exampleFormControlTextarea1 mb-1'>Descripción</label>";
+                        echo "<textarea class='form-control' id='exampleFormControlTextarea1' rows='3' readonly></textarea>";
+                        echo "</div>";                
+                        echo "<button type='submit' class='btn btn-primary'>Crea comentario</button>";  
+                    }                                          
+                ?>
             </form>    
+            <form action="crearem">
             <button type="submit" class="btn btn-primary mt-2">Crea empresa</button>
+            </form>  
             </div>
         </div>
     </div>

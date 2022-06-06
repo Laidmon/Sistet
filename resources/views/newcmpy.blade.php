@@ -15,8 +15,6 @@
                 <div class="form-group mb-2">
                     <label for="exampleFormControlTextarea1">Tipo de empresa</label>
                     <select class="form-control form-control-lg mb-2">
-                         <option>Carnica de mierda</option>
-                         <option>Carnica de mierda2</option>
                     </select>
                     <input class="form-control form-control-lg" type="text" placeholder="Otro...">
                 </div>

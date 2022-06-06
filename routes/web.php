@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Comment;
+use App\Models\Company;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,7 @@ Route::get('/nuevaemp',function(){
     return view ('newcmpy');
 });
 
-Route::get('/seleccionar',function(){
-    return view ('select');
-});
+
 
 Route::get('/insertar',function(){
      $comentario = new Comment;
@@ -42,6 +41,9 @@ Route::get('/insertar',function(){
      $comentario -> save();    
      return redirect('/');
  });
+
+Route::get('/select','App\Http\Controllers\Companylist@list');
+
 
 Auth::routes();
 
