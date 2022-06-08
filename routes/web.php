@@ -43,7 +43,8 @@ Route::get('/insertar',function(){
      $comentario -> value = Request :: get('values');
      $comentario -> comments = Request :: get('comment');
      $comentario -> iduser = '1';
-     $comentario -> idcomp = '1';
+     $comentario -> idcomp = '1';     
+     $comentario -> total = ((int)Request :: get('values')+ (int)Request :: get('salarie') + (int)Request :: get('equal')) / 3;
      $comentario -> save();    
      return redirect('/');
  });

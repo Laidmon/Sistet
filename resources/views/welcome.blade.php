@@ -66,20 +66,20 @@
                     <div class="col-md-6"> 
                         <h2 class="m-2">Las mejores empresas del pais</h2> 
                 <?php
-                    if (!$companies->count()){
+                    if (!$companies){
                         echo "<label for='exampleFormControlTextarea1'>No existen empresas</label>";
                     }else{
                         foreach ($companies as $com){
                             echo "<div class='card mb-2'><div class='card-header'><h5 class='card-title'>";
-                            echo $com->name;
+                            echo $com->comname;
                             echo "</h5>";     
                             echo "<h6 class='card-subtitle mb-2 text-muted'>";     
-                            echo "Puntuación";     
+                            echo $com->comtot;     
                             echo "</h6></div> ";                                 
-                            echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";      
-                            echo "Puntuación";                                  
+                            echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";     
+                            echo $com->comtot;                             
                             echo "<p class='card-text mb-auto'>";                              
-                            echo $com->description;                  
+                            echo $com->comdes;                  
                             echo "</p><a href='#' class='card-link'>Leer el comentario completo</a></div></div>";   
                         }
                     }                                          
@@ -88,21 +88,21 @@
                             <h2 class="m-2">Las Peores empresas del pais</h2>  
 
                             <?php
-                    if (!$companies->count()){
+                    if (!$companiesbad){
                         echo "<label for='exampleFormControlTextarea1'>No existen empresas</label>";
                     }else{
-                        foreach ($companies as $com){
+                        foreach ($companiesbad as $combad){
                             echo "<div class='card mb-2'><div class='card-header'><h5 class='card-title'>";
-                            echo $com->name;
+                            echo $combad->comname;
                             echo "</h5>";     
                             echo "<h6 class='card-subtitle mb-2 text-muted'>";     
-                            echo "Puntuación";     
+                            echo $combad->comtot;     
                             echo "</h6></div> ";                                 
-                            echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";      
-                            echo "Puntuación";                                  
+                            echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";     
+                            echo $combad->comtot;                             
                             echo "<p class='card-text mb-auto'>";                              
-                            echo $com->description;                  
-                            echo "</p><a href='#' class='card-link'>Leer el comentario completo</a></div></div>";   
+                            echo $combad->comdes;                  
+                            echo "</p><a href='#' class='card-link'>Leer el comentario completo</a></div></div>"; 
                         }
                     }                                          
                 ?>
@@ -116,15 +116,25 @@
                                     <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Buscar</button> 
                                     <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Filtro de búsqueda</button>
                                 </form>
-                            </div>
-                            <div class="card">                           
-                                <div class="card-body">
-                                    <h5 class="card-title">Empresa 1</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">Puntuación</h6>
-                                    <p class="card-text mb-auto">blablabla...</p>
-                                    <a href="#" class="card-link">Leer el comentario completo</a>
-                                </div>
-                            </div>
+                            </div><?php
+                    if (!$companieslast){
+                        echo "<label for='exampleFormControlTextarea1'>No existen empresas</label>";
+                    }else{
+                        foreach ($companieslast as $comlast){
+                            echo "<div class='card mb-2'><div class='card-header'><h5 class='card-title'>";
+                            echo $comlast->comname;
+                            echo "</h5>";     
+                            echo "<h6 class='card-subtitle mb-2 text-muted'>";     
+                            echo $comlast->comtot;     
+                            echo "</h6></div> ";                                 
+                            echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";     
+                            echo $comlast->comtot;                             
+                            echo "<p class='card-text mb-auto'>";                              
+                            echo $comlast->comdes;                  
+                            echo "</p><a href='#' class='card-link'>Leer el comentario completo</a></div></div>"; 
+                        }
+                    }                                          
+                ?>
                     </div>
                 </div>
             </div>

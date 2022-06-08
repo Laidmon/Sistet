@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
 
 class CompanyList extends Controller
 {
@@ -14,10 +15,35 @@ class CompanyList extends Controller
         ]);        
     }
 
-    public function welcome(){            
-        $companies=Company::all();
+    public function welcome(){    
+        $companies=DB::select("select companies.id AS comid, companies.name AS comname, companies.description AS comdes, 
+        AVG(comments.total) AS comtot 
+        from companies 
+        join comments on companies.id = comments.idcomp 
+        group by companies.name, companies.id, companies.description         
+        order by AVG(comments.total) DESC
+        LIMIT 3");
+            
+        $companiesbad=DB::select("select companies.id AS comid, companies.name AS comname, companies.description AS comdes, 
+        AVG(comments.total) AS comtot 
+        from companies 
+        join comments on companies.id = comments.idcomp 
+        group by companies.name, companies.id, companies.description         
+        order by AVG(comments.total) ASC
+        LIMIT 3");
+
+        $companieslast=DB::select("select companies.id AS comid, companies.name AS comname, companies.description AS comdes, 
+        AVG(comments.total) AS comtot 
+        from companies 
+        join comments on companies.id = comments.idcomp 
+        group by companies.name, companies.id, companies.description         
+        order by AVG(companies.created_at) DESC
+        LIMIT 6");
+        
         return view('welcome')-> with ([
             'companies'=>$companies,
+            'companiesbad'=>$companiesbad,
+            'companieslast'=>$companieslast,
         ]);        
     }
 }
