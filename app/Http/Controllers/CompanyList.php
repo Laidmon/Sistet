@@ -46,4 +46,14 @@ class CompanyList extends Controller
             'companieslast'=>$companieslast,
         ]);        
     }
+
+    public function detalle($i){  
+        $companies=Company::where('id', '=', $i)->get();
+        $comments=Comment::where('idcomp', '=', $i)
+                        ->paginate(4);
+        return view('empresa')-> with ([        
+        'companies'=>$companies,
+        'comments'=>$comments
+    ]); 
+    }
 }

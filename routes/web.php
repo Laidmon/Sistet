@@ -50,6 +50,7 @@ Route::get('/insertar',function(){
  });
 
 Route::get('/select','App\Http\Controllers\Companylist@list');
+Route::get('/empresa/{i}','App\Http\Controllers\Companylist@detalle');
 
 
 Auth::routes();

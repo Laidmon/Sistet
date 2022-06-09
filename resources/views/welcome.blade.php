@@ -80,7 +80,9 @@
                             echo $com->comtot;                             
                             echo "<p class='card-text mb-auto'>";                              
                             echo $com->comdes;                  
-                            echo "</p><a href='#' class='card-link'>Leer el comentario completo</a></div></div>";   
+                            echo "</p><a href='/empresa/";
+                            echo $com->comid;
+                            echo "; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
                         }
                     }                                          
                 ?>
@@ -102,7 +104,9 @@
                             echo $combad->comtot;                             
                             echo "<p class='card-text mb-auto'>";                              
                             echo $combad->comdes;                  
-                            echo "</p><a href='#' class='card-link'>Leer el comentario completo</a></div></div>"; 
+                            echo "</p><a href='/empresa/";
+                            echo $com->comid;
+                            echo "; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
                         }
                     }                                          
                 ?>
@@ -130,8 +134,10 @@
                             echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";     
                             echo $comlast->comtot;                             
                             echo "<p class='card-text mb-auto'>";                              
-                            echo $comlast->comdes;                  
-                            echo "</p><a href='#' class='card-link'>Leer el comentario completo</a></div></div>"; 
+                            echo $comlast->comdes;                    
+                            echo "</p><a href='/empresa/";
+                            echo $com->comid;
+                            echo "; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
                         }
                     }                                          
                 ?>

@@ -7,6 +7,9 @@
                 <div class="card-header">{{ __('Selecciona la empresa') }}</div>
 
                 <div class="card-body">
+                <div id="app">sfdsdfg
+                   <example-component></example-component>
+                </div>
             <form action="seleccionar">
                 <?php                
                     echo "<div class='form-group mb-2'>";
