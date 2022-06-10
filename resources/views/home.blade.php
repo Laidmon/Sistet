@@ -14,7 +14,6 @@
                         </div>
                     @endif
 
-                    
                     <div class="form-row">
                         <div class="form-group">
                         <label for="inputEmail4">Email</label>
@@ -48,7 +47,7 @@
                             </form>
                         </div>                            
                     </div>                    
-                    <button type="submit" class="btn btn-primary mt-2">Log out</button>        
+                    <button type="submit" class="btn btn-primary mt-2">Log out</button>
                 </div>
             </div>
         </div>

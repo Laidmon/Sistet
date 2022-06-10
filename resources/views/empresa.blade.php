@@ -32,49 +32,44 @@
                     }                 
                 ?>  
             </div>
-                <?php
-                    foreach ($comments as $comt){
-                        echo "<div class='card m-2'><div class='card-header'><h5 class='card-title'>";
-                        echo $comt->title;
-                        echo "</h5>";     
-                        echo "<h6 class='card-subtitle mb-2 text-muted'>";     
-                        echo $comt->comments;     
-                        echo "</h6></div> ";                                 
-                        echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";   
-                        echo "Sueldo:";
-                        if ($comt->salarie == 0){ 
-                            echo "<span class='fa fa-star'></span>";
-                        }
-                        else{
-                            for ($i=0; $i<$comt->salarie ;$i++){
-                                echo "<span class='fa fa-star checked'></span>";
-                            }
-                        }   
-                        echo "Equidad:";
-                        if ($comt->equality == 0){ 
-                            echo "<span class='fa fa-star'></span>";
-                        }
-                        else{
-                            for ($i=0; $i<$comt->equality ;$i++){
-                                echo "<span class='fa fa-star checked'></span>";
-                            }
-                        }    
-                        echo "Valoracion:";
-                        if ($comt->value == 0){ 
-                            echo "<span class='fa fa-star'></span>";
-                        }
-                        else{
-                            for ($i=0; $i<$comt->value ;$i++){
-                                echo "<span class='fa fa-star checked'></span>";
-                            }
-                        }                            
-                        echo "<p class='card-text mb-auto'>";                              
-                        echo $comt->comdes;                  
-                        echo "</p></div></div>";   
-                    } 
-                ?>
+                    @foreach ($comments as $comt)
+                        <div class='card m-2'><div class='card-header'><h5 class='card-title'>
+                        {{$comt->title}}
+                        </h5>     
+                        <h6 class='card-subtitle mb-2 text-muted'>   
+                        {{$comt->comments }}    
+                        </h6></div>                                 
+                        <div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>  
+                        Sueldo:
+                        @if ($comt->salarie == 0)
+                            <span class='fa fa-star'></span>
+                        @else
+                            @for ($i=0; $i<$comt->salarie ;$i++)
+                            <span class='fa fa-star checked'></span>
+                            @endfor
+                        @endif   
+                        Equidad:
+                        @if ($comt->equality == 0)
+                        <span class='fa fa-star'></span>
+                        @else
+                            @for ($i=0; $i<$comt->equality ;$i++)
+                            <span class='fa fa-star checked'></span>
+                            @endfor
+                        @endif   
+                        Valoracion:
+                        @if ($comt->value == 0){ 
+                            <span class='fa fa-star'></span>
+                        @else
+                            @for ($i=0; $i<$comt->value ;$i++)
+                            <span class='fa fa-star checked'></span> 
+                            @endfor                           
+                        <p class='card-text mb-auto'>      
+                        @endif                        
+                        {{ $comt->comdes}}
+                        </p></div></div>   
+                    @endforeach
                 <div class="d-flex justify-content-center">                    
-                {{ $comments->links() }}  
+                {{ $comments->render() }}  
                 </div>          
             <a type="button" href="{{ url('/') }}" class="btn btn-primary"> Volver a la portada</a>
         </div>

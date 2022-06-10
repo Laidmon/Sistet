@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\Prov;
 use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +15,14 @@ class CompanyList extends Controller
             'companies'=>$companies,
         ]);        
     }
+
+    public function buscar(Request $request){            
+        $companies=Company::orderBy('name')
+                            ->paginate(3);
+        return view('search', compact('companies'));        
+    }
+
+
 
     public function welcome(){    
         $companies=DB::select("select companies.id AS comid, companies.name AS comname, companies.description AS comdes, 
@@ -56,4 +65,35 @@ class CompanyList extends Controller
         'comments'=>$comments
     ]); 
     }
+
+    public function nuevaemp(){            
+        $companies=Company::all();            
+        $provinces=Prov::all();
+        return view('newcmpy')-> with ([
+            'companies'=>$companies,
+            'provinces'=>$provinces
+        ]);        
+    }
+
+    public function insertarempresa(Request $request){        
+        $newcompanie = new Company;
+        if ($request->filled('newlocat')){
+            $newcompanie -> location = $request->newlocat;
+        }else{            
+            $newcompanie -> location = $request->locat;
+        }
+        if ($request->filled('newtype')){ 
+            $newcompanie -> type = $request->newtype;  
+        }else{         
+            $newcompanie -> type = $request->type;
+        }
+        $newcompanie -> name = $request->namep;
+        $newcompanie -> city = $request->prov;
+        $newcompanie -> description = $request->descrip;
+        $newcompanie -> save();                
+        $companies=Company::where('name', '=', $newcompanie -> name)->get(); 
+        return view('newcom')-> with ([        
+            'companies'=>$companies
+        ]); 
+        }
 }

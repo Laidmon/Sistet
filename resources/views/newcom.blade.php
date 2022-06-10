@@ -9,8 +9,12 @@
 
                 <div class="card-body">
             <form action ="insertar" method="get">
-                <input class="form-control form-control-lg mb-2" type="text" placeholder="Nombre de la empresa" readonly>
-                <input class="form-control form-control-lg mb-1" type="text" name='comTitle'  id='comTitle' placeholder="Título del comentario">
+                @foreach ($companies as $com)
+                <input class="form-control form-control-lg mb-2" type="text" name='comname' id='conmame' placeholder="{{$com->name}}" readonly>
+                <input class="d-none" type="number" name='comid'  id='comid' value="{{$com->id}}" readonly>
+                @endforeach
+                <h3>Título del comentario</h3> 
+                <input class="form-control form-control-lg mb-1" type="text" name='comTitle'  id='comTitle' placeholder="Escribe el título">
                 <div class="form-group">
                     <label>¿Qué tal es el sueldo?</label>
                     <div class="inline">
@@ -165,7 +169,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Comenta qué tal la empresa</label>
+                    <h3>Comenta qué tal la empresa</h3>
                     <textarea class="form-control" name="comment" id="comment" rows="8"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Envia el comentario</button>

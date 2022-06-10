@@ -31,7 +31,7 @@
                     }                                          
                 ?>
             </form>    
-            <form action="crearem">
+            <form action="nuevaemp">
             <button type="submit" class="btn btn-primary mt-2">Crea empresa</button>
             </form>  
             </div>

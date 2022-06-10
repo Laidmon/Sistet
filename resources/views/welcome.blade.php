@@ -4,26 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Sistet</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ mix('/js/app.js') }}"></script>
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">    
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">   
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css" /> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <style>
-        .checked {
-        color: orange;
-        }
         </style>
 
     </head>
@@ -82,7 +81,7 @@
                             echo $com->comdes;                  
                             echo "</p><a href='/empresa/";
                             echo $com->comid;
-                            echo "; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
+                            echo "'; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
                         }
                     }                                          
                 ?>
@@ -106,7 +105,7 @@
                             echo $combad->comdes;                  
                             echo "</p><a href='/empresa/";
                             echo $com->comid;
-                            echo "; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
+                            echo "'; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
                         }
                     }                                          
                 ?>
@@ -137,7 +136,7 @@
                             echo $comlast->comdes;                    
                             echo "</p><a href='/empresa/";
                             echo $com->comid;
-                            echo "; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
+                            echo "'; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
                         }
                     }                                          
                 ?>
