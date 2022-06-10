@@ -22,25 +22,16 @@ Route::get('/', function () {
 
 Route::get('/','App\Http\Controllers\Companylist@welcome');
 
-Route::get('/nuevo',function(){
-    return view ('newcom');
-});
+Route::get('listLocations/{id}','App\Http\Controllers\Companylist@listLocations');
 
-
-
-
-Route::get('/insertar','App\Http\Controllers\CommentCont@insertarcomentario');
+Route::get('/insertar','App\Http\Controllers\CommentCont@insertarcomentario')->middleware('auth');
 
 Route::get('/buscador','App\Http\Controllers\Companylist@buscar');
-Route::get('/nuevaemp','App\Http\Controllers\Companylist@nuevaemp');
-Route::get('/select','App\Http\Controllers\Companylist@list');
+Route::get('/nuevaemp','App\Http\Controllers\Companylist@nuevaemp')->middleware('auth');
+Route::get('/select','App\Http\Controllers\Companylist@list')->middleware('auth');
 Route::get('/empresa/{i}','App\Http\Controllers\Companylist@detalle');
-Route::get('/insertaremp','App\Http\Controllers\Companylist@insertarempresa');
+Route::get('/insertaremp','App\Http\Controllers\Companylist@insertarempresa')->middleware('auth');
 
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

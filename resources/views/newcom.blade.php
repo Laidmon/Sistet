@@ -12,7 +12,8 @@
                 @foreach ($companies as $com)
                 <input class="form-control form-control-lg mb-2" type="text" name='comname' id='conmame' placeholder="{{$com->name}}" readonly>
                 <input class="d-none" type="number" name='comid'  id='comid' value="{{$com->id}}" readonly>
-                @endforeach
+                @endforeach                
+                <input class="d-none" type="number" name='usid'  id='usid' value="{{ Auth::user()->id }}" readonly>
                 <h3>Título del comentario</h3> 
                 <input class="form-control form-control-lg mb-1" type="text" name='comTitle'  id='comTitle' placeholder="Escribe el título">
                 <div class="form-group">

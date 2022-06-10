@@ -16,6 +16,13 @@ class CompanyList extends Controller
         ]);        
     }
 
+    public function listLocations($id){
+        echo json_encode(DB::table('companies')->
+        where('id',$id)->get());
+    }
+
+
+
     public function buscar(Request $request){            
         $companies=Company::orderBy('name')
                             ->paginate(3);

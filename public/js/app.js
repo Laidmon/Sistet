@@ -40410,3 +40410,23 @@ Vue.compile = compileToFunctions;
 /******/ 	
 /******/ })()
 ;
+
+
+$(document).ready(function () {
+  $('#prov').on('change', function () {
+  let id = $(this).val();
+  $('#descrip').empty();
+  $.ajax({
+  type: 'GET',
+  url: 'listLocations/' + id,
+  success: function (response) {
+  var response = JSON.parse(response);
+  console.log(response);   
+  $('#descrip').empty();
+  response.forEach(element => {
+      $('#descrip').append(`${element['description']}`);
+      });
+  }
+});
+});
+});

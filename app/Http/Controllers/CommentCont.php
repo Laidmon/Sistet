@@ -17,7 +17,7 @@ class CommentCont extends Controller
         $comentario -> value = $request->values;
         $comentario -> comments = $request->comment;
         $comentario -> idcomp = (int) $request->comid;
-        $comentario -> iduser = '1';    
+        $comentario -> iduser = (int) $request->usid;    
         $comentario -> total = ((int)$request->values + (int) $request->salarie + (int)$request->equal) / 3;
          $comentario -> save();    
         return redirect('/');

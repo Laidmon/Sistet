@@ -60,6 +60,10 @@
   --bs-body-bg: #f8fafc;
 }
 
+.checked {
+  color: orange;
+  }
+
 *,
 *::before,
 *::after {
