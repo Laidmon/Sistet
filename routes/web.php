@@ -22,15 +22,26 @@ Route::get('/', function () {
 
 Route::get('/','App\Http\Controllers\Companylist@welcome');
 
-Route::get('listLocations/{id}','App\Http\Controllers\Companylist@listLocations');
+Route::get('/comdes/{id}','App\Http\Controllers\Companylist@comdes');
+Route::get('/listLocations/{id}','App\Http\Controllers\Companylist@listLocations');
 
 Route::get('/insertar','App\Http\Controllers\CommentCont@insertarcomentario')->middleware('auth');
 
-Route::get('/buscador','App\Http\Controllers\Companylist@buscar');
+Route::post('/buscador','App\Http\Controllers\Companylist@buscar');
+Route::get('/buscador/ordenas/{i}','App\Http\Controllers\Companylist@orderASC');
+Route::get('/buscador/ordendes/{i}','App\Http\Controllers\Companylist@orderDESC');
+
+
+Route::get('/buscador/valoracion/{i}','App\Http\Controllers\Companylist@busquedavaloracion');
+
 Route::get('/nuevaemp','App\Http\Controllers\Companylist@nuevaemp')->middleware('auth');
 Route::get('/select','App\Http\Controllers\Companylist@list')->middleware('auth');
 Route::get('/empresa/{i}','App\Http\Controllers\Companylist@detalle');
+Route::get('/seleccionar','App\Http\Controllers\Companylist@empresaselect');
 Route::get('/insertaremp','App\Http\Controllers\Companylist@insertarempresa')->middleware('auth');
+Route::get('/administrar','App\Http\Controllers\Companylist@validarcomentarios')->middleware('auth');
+Route::get('/borrar/{i}','App\Http\Controllers\Companylist@comentborrado')->middleware('auth');;
+Route::get('/validar/{i}','App\Http\Controllers\Companylist@comentvalidate')->middleware('auth');;
 
 
 Auth::routes();

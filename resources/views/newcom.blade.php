@@ -173,7 +173,7 @@
                     <h3>Comenta qué tal la empresa</h3>
                     <textarea class="form-control" name="comment" id="comment" rows="8"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Envia el comentario</button>
+                <button type="submit" class="btn btn-primary mt-3">Publica el comentario</button>
                 </form>
             </div>
         </div>

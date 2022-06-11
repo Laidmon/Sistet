@@ -6,31 +6,19 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h1>                    
-                    <?php
-                        foreach ($companies as $com){
-                        echo $com->name;  
-                        }                 
-                    ?>        
+                    <h1>
+                        @foreach ($companies as $com)
+                        {{$com->name}} 
+                        @endforeach    
                     </h1>
                 </div>
-                <div class="card-body">                                        
-                <?php
-                    foreach ($companies as $com){                        
-                    echo "<h5 class='card-title'>";
-                    echo $com->type;  
-                    echo "</h5>";     
-                    echo "<h6 class='card-subtitle mb-2'>";  
-                    echo $com->city;     
-                    echo "</h6>";     
-                    echo "<h6 class='card-subtitle mb-2'>";  
-                    echo $com->location;     
-                    echo "</h6>";       
-                    echo "<p class='card-subtitle mb-2'>";                      
-                    echo $com->description;                         
-                    echo "</p>"; 
-                    }                 
-                ?>  
+                <div class="card-body">
+                    @foreach ($companies as $com)                      
+                    <h5 class='card-title'>{{$com->type}}</h5>     
+                    <h6 class='card-subtitle mb-2'>{{$com->city}}</h6>     
+                    <h6 class='card-subtitle mb-2'>{{$com->location }}</h6>    
+                    <p class='card-subtitle mb-2'>{{$com->description}}</p>
+                    @endforeach
             </div>
                     @foreach ($comments as $comt)
                         <div class='card m-2'><div class='card-header'><h5 class='card-title'>

@@ -5426,14 +5426,14 @@ Vue.component('example-component', (__webpack_require__(/*! ./components/Example
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+/**
 var app = new Vue({
   el: '#app',
   data: {
     selected: ''
   }
 });
-
+*/
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -40413,12 +40413,12 @@ Vue.compile = compileToFunctions;
 
 
 $(document).ready(function () {
-  $('#prov').on('change', function () {
+  $('#comp').on('change', function () {
   let id = $(this).val();
   $('#descrip').empty();
   $.ajax({
   type: 'GET',
-  url: 'listLocations/' + id,
+  url: 'comdes/' + id,
   success: function (response) {
   var response = JSON.parse(response);
   console.log(response);   
@@ -40426,6 +40426,27 @@ $(document).ready(function () {
   response.forEach(element => {
       $('#descrip').append(`${element['description']}`);
       });
+  }
+});
+});
+
+});
+
+$(document).ready(function () {
+  $('#prov').on('change', function () {
+  let id = $(this).val();
+  $('#locat').empty();
+  $.ajax({
+  type: 'GET',
+  url: 'listLocations/' + id,
+  success: function (response) {
+  var response = JSON.parse(response);
+  console.log(response);   
+  $('#locat').empty();
+  $('#locat').append(`<option value="" disabled selected>Elige una localidad.</option>`);
+  response.forEach(element => {      
+    $('#locat').append(`<option value="${element['location']}">${element['location']}</option>`);
+  });
   }
 });
 });

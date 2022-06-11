@@ -18,8 +18,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">   
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css" /> 
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css" />    
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <style>
@@ -64,82 +64,66 @@
                 <div class="row mb-2">
                     <div class="col-md-6"> 
                         <h2 class="m-2">Las mejores empresas del pais</h2> 
-                <?php
-                    if (!$companies){
-                        echo "<label for='exampleFormControlTextarea1'>No existen empresas</label>";
-                    }else{
-                        foreach ($companies as $com){
-                            echo "<div class='card mb-2'><div class='card-header'><h5 class='card-title'>";
-                            echo $com->comname;
-                            echo "</h5>";     
-                            echo "<h6 class='card-subtitle mb-2 text-muted'>";     
-                            echo $com->comtot;     
-                            echo "</h6></div> ";                                 
-                            echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";     
-                            echo $com->comtot;                             
-                            echo "<p class='card-text mb-auto'>";                              
-                            echo $com->comdes;                  
-                            echo "</p><a href='/empresa/";
-                            echo $com->comid;
-                            echo "'; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
-                        }
-                    }                                          
-                ?>
-                                         
-                            <h2 class="m-2">Las Peores empresas del pais</h2>  
-
-                            <?php
-                    if (!$companiesbad){
-                        echo "<label for='exampleFormControlTextarea1'>No existen empresas</label>";
-                    }else{
-                        foreach ($companiesbad as $combad){
-                            echo "<div class='card mb-2'><div class='card-header'><h5 class='card-title'>";
-                            echo $combad->comname;
-                            echo "</h5>";     
-                            echo "<h6 class='card-subtitle mb-2 text-muted'>";     
-                            echo $combad->comtot;     
-                            echo "</h6></div> ";                                 
-                            echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";     
-                            echo $combad->comtot;                             
-                            echo "<p class='card-text mb-auto'>";                              
-                            echo $combad->comdes;                  
-                            echo "</p><a href='/empresa/";
-                            echo $com->comid;
-                            echo "'; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
-                        }
-                    }                                          
-                ?>
-                </div>
+                    @if (!$companies){
+                        <label for='exampleFormControlTextarea1'>No existen empresas</label>
+                    @else
+                        @foreach ($companies as $com)
+                            <div class='card mb-2'>
+                                <div class='card-header'>
+                                <h5 class='card-title'>{{$com->comname}}</h5>
+                                <h6 class='card-subtitle mb-2 text-muted'>Puntuación empresarial : {{$com->comtot}} de 5</h6>
+                                </div>                                 
+                                <div class='card-body'>                         
+                                <p class='card-text mb-auto'>{{$com->comdes}}</p>
+                                <a href='/empresa/{{$com->comid}}'; class='card-link'>Leer los comentarios de la empresa</a>
+                                </div>
+                            </div>
+                         @endforeach   
+                    @endif
+                    <h2 class="m-2">Las Peores empresas del pais</h2> 
+                    @if (!$companiesbad){
+                        <label for='exampleFormControlTextarea1'>No existen empresas</label>
+                    @else
+                        @foreach ($companiesbad as $combad)
+                            <div class='card mb-2'>
+                                <div class='card-header'>
+                                <h5 class='card-title'>{{$combad->comname}}</h5>
+                                <h6 class='card-subtitle mb-2 text-muted'>Puntuación empresarial : {{$combad->comtot}} de 5</h6>
+                                </div>                                 
+                                <div class='card-body'>                         
+                                <p class='card-text mb-auto'>{{$combad->comdes}}</p>
+                                <a href='/empresa/{{$combad->comid}}'; class='card-link'>Leer los comentarios de la empresa</a>
+                                </div>
+                            </div>
+                         @endforeach   
+                    @endif
+                    </div>
                     <div class="col-md-6">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <h2 class="mb-0">Buscador</h3>
-                                <form action="buscador" class="form-inline mt-2 mt-md-0">
-                                    <input type="hidden" name="_token" value=""> 
-                                    <input type="text" placeholder="Buscar" aria-label="Search" name="search" class="form-control mr-sm-2"> 
-                                    <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Buscar</button> 
-                                    <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Filtro de búsqueda</button>
-                                </form>
-                            </div><?php
-                    if (!$companieslast){
-                        echo "<label for='exampleFormControlTextarea1'>No existen empresas</label>";
-                    }else{
-                        foreach ($companieslast as $comlast){
-                            echo "<div class='card mb-2'><div class='card-header'><h5 class='card-title'>";
-                            echo $comlast->comname;
-                            echo "</h5>";     
-                            echo "<h6 class='card-subtitle mb-2 text-muted'>";     
-                            echo $comlast->comtot;     
-                            echo "</h6></div> ";                                 
-                            echo "<div class='card-body'><h6 class='card-subtitle mb-2 text-muted'>";     
-                            echo $comlast->comtot;                             
-                            echo "<p class='card-text mb-auto'>";                              
-                            echo $comlast->comdes;                    
-                            echo "</p><a href='/empresa/";
-                            echo $com->comid;
-                            echo "'; class='card-link'>Leer los comentarios de la empresa</a></div></div>";   
-                        }
-                    }                                          
-                ?>
+                        <h2 class="m-2">Buscador</h2>
+                            <form action="/buscador" method="POST">                                         
+                                 @csrf
+                                <input class="form-control mb-2" type="text" placeholder="Buscar" name="buscar">
+                                <button class="btn btn-primary" type="submit">Buscar</button>
+                            </form>
+                            </p> O prueba la busqueda avanzada por filtros</p>
+                            <a href="/buscador" class="btn btn-primary mb-3">Filtros de búsqueda</a>
+                     
+                        @if (!$companieslast){
+                            <label for='exampleFormControlTextarea1'>No existen empresas</label>
+                        @else
+                            @foreach ($companieslast as $comlast)
+                                <div class='card mb-2'>
+                                    <div class='card-header'>
+                                    <h5 class='card-title'>{{$comlast->comname}}</h5>
+                                    <h6 class='card-subtitle mb-2 text-muted'>Puntuación empresarial : {{$comlast->comtot}} de 5</h6>
+                                    </div>                                 
+                                    <div class='card-body'>                         
+                                    <p class='card-text mb-auto'>{{$comlast->comdes}}</p>
+                                    <a href='/empresa/{{$comlast->comid}}'; class='card-link'>Leer los comentarios de la empresa</a>
+                                    </div>
+                                </div>
+                                @endforeach   
+                        @endif
                     </div>
                 </div>
             </div>

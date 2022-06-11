@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Usuario:') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -53,9 +53,18 @@ var_dump ($usuario);
                             </form>
                         </div>                            
                     </div>                    
-                    <button type="submit" class="btn btn-primary mt-2">Log out</button>
+                    
+                    <a class="btn btn-primary mt-2" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
                                         
-                    <button type="submit" class="btn btn-primary mt-2">Administrar</button>
+                    @if (Auth::user()->rol == 'admin')
+                    <form action ="administrar">
+                        <button type="submit" class="btn btn-primary mt-2">Administrar</button>
+                    </form>
+                    @endif
                 </div>
             </div>
         </div>
