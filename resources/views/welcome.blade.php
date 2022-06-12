@@ -91,7 +91,7 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-6"> 
-                        <h2 class="m-2">Las mejores empresas del pais</h2> 
+                        <h2 class="m-2">Las mejores empresas del país</h2> 
                     @if (!$companies)
                         <label for='exampleFormControlTextarea1'>No existen empresas</label>
                     @else
@@ -108,7 +108,7 @@
                             </div>
                          @endforeach   
                     @endif
-                    <h2 class="m-2">Las Peores empresas del pais</h2> 
+                    <h2 class="m-2">Las peores empresas del país</h2> 
                     @if (!$companiesbad)
                         <label for='exampleFormControlTextarea1'>No existen empresas</label>
                     @else
@@ -139,7 +139,8 @@
                                 <input class="d-none" type="text" placeholder="Buscar" name="buscar">
                                 <button class="btn btn-primary mb-4" type="submit">Filtros de búsqueda</button>
                             </form>
-                     
+                        
+                        <h2 class="m-2">Últimas empresas dadas de alta</h2> 
                         @if (!$companieslast)
                             <label for='exampleFormControlTextarea1'>No existen empresas</label>
                         @else

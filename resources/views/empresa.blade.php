@@ -14,10 +14,10 @@
                 </div>
                 <div class="card-body">
                     @foreach ($companies as $com)                      
-                    <h5 class='card-title'>{{$com->type}}</h5>     
-                    <h6 class='card-subtitle mb-2'>{{$com->city}}</h6>     
-                    <h6 class='card-subtitle mb-2'>{{$com->location }}</h6>    
-                    <p class='card-subtitle mb-2'>{{$com->description}}</p>
+                    <h5 class='card-title'>Tipo: {{$com->type}}</h5>     
+                    <h6 class='card-subtitle mb-2'>Provincia: {{$com->city}}</h6>     
+                    <h6 class='card-subtitle mb-2'>Localidad: {{$com->location }}</h6>    
+                    <p class='card-subtitle mb-2'>Descripción: {{$com->description}}</p>
                     @endforeach
             </div>
                     @foreach ($comments as $comt)

@@ -81,8 +81,7 @@
                                 </ul>
                             </aside> 
                             <section class="col-lg-8 col-md-6">                                
-                                <label>Resultados:</label>   
-                                <div class="row">
+                                <label>Resultados:</label>
                                 @if (!$companies->count())
                                     <label for='exampleFormControlTextarea1'>No existen empresas que coincidan con la busqueda</label>
                                 @else    
@@ -105,8 +104,7 @@
                                             </div>
                                         @endforeach                                
                                 @endif
-                                {{$companies -> render()}}  
-                                </div> 
+                                {{$companies -> render()}} 
                             </section>
                         </div>
                     </div>
