@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 @if (Auth::user()->rol == 'admin')
                 <div class="card-header">
@@ -45,7 +45,7 @@
                     {{ $comt->comdes}}
                     </p></div>   
                     <a class="btn btn-danger mt-2" href="/borrar/{{$comt->id}}">Borrar</a>
-                    <a class="btn btn-success mt-2" href="/validar/{{$comt->id}}">Validar</a>
+                    <a class="btn btn-success mt-2" href="/validar/{{$comt->id}}/{{$comt->idcomp}}">Validar</a>
                 </div>
                 @endforeach        
                 

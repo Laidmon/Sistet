@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class CommentCont extends Controller
 {
-    public function insertarcomentario(Request $request){
+    public function insertarcomentario(Request $request){         
+        $date = today();     
         $comentario = new Comment;
         $comentario -> title = $request->comTitle;
         $comentario -> salarie = $request->salarie;
@@ -19,7 +20,8 @@ class CommentCont extends Controller
         $comentario -> idcomp = (int) $request->comid;
         $comentario -> iduser = (int) $request->usid;    
         $comentario -> total = ((int)$request->values + (int) $request->salarie + (int)$request->equal) / 3;
-         $comentario -> save();    
+        $comentario -> created_at = $date;
+        $comentario -> save();    
         return redirect('/');
     }
 }

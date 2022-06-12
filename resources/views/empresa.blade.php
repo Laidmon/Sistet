@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
                     <h1>
@@ -59,7 +59,7 @@
                 <div class="d-flex justify-content-center">                    
                 {{ $comments->render() }}  
                 </div>          
-            <a type="button" href="{{ url('/') }}" class="btn btn-primary"> Volver a la portada</a>
+            <a type="button" href="{{ url('/') }}" class="btn btn-primary mt-3"> Volver a la portada</a>
         </div>
     </div>
 </div>

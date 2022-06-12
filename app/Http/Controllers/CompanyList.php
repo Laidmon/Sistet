@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Prov;
 use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class CompanyList extends Controller
 {
@@ -30,10 +31,10 @@ class CompanyList extends Controller
     public function buscar(Request $request){ 
         $provinces=Prov::all();          
         $search = $request->buscar;
-        $companies=Company::where('name', 'LIKE', "%$search%")
-                            ->orWhere('city', 'LIKE', "%$search%")
-                            ->orWhere('location', 'LIKE', "%$search%")
-                            ->paginate(6);
+        $companies=Company::where([['name', 'LIKE', "%$search%"],['total', '<>', '']])
+                            ->orWhere([['city', 'LIKE', "%$search%"],['total', '<>', '']])
+                            ->orWhere([['location', 'LIKE', "%$search%"],['total', '<>', '']])
+                            ->simplePaginate(6);
         return view('search', compact('companies'))-> with ([
             'provinces'=>$provinces,
             'search'=>$search,
@@ -43,11 +44,11 @@ class CompanyList extends Controller
     public function orderASC($i){ 
         $provinces=Prov::all();          
         $search = $i;
-        $companies=Company::where('name', 'LIKE', "%$search%")
-                            ->orWhere('city', 'LIKE', "%$search%")
-                            ->orWhere('location', 'LIKE', "%$search%")
+        $companies=Company::where([['name', 'LIKE', "%$search%"],['total', '<>', '']])
+                            ->orWhere([['city', 'LIKE', "%$search%"],['total', '<>', '']])
+                            ->orWhere([['location', 'LIKE', "%$search%"],['total', '<>', '']])
                             ->orderBY('name', 'ASC')
-                            ->paginate(6);
+                            ->simplePaginate(6);
         return view('search', compact('companies'))-> with ([
             'provinces'=>$provinces,
             'search'=>$search,
@@ -57,11 +58,11 @@ class CompanyList extends Controller
     public function orderDESC($i){ 
         $provinces=Prov::all();          
         $search = $i;
-        $companies=Company::where('name', 'LIKE', "%$search%")
-                            ->orWhere('city', 'LIKE', "%$search%")
-                            ->orWhere('location', 'LIKE', "%$search%")
+        $companies=Company::where([['name', 'LIKE', "%$search%"],['total', '<>', '']])
+                            ->orWhere([['city', 'LIKE', "%$search%"],['total', '<>', '']])
+                            ->orWhere([['location', 'LIKE', "%$search%"],['total', '<>', '']])
                             ->orderBY('name', 'DESC')
-                            ->paginate(6);
+                            ->simplePaginate(6);
         return view('search', compact('companies'))-> with ([
             'provinces'=>$provinces,
             'search'=>$search,
@@ -69,16 +70,12 @@ class CompanyList extends Controller
     }
 
     public function busquedavaloracion($i){ 
-        $provinces=Prov::all();
-        $search = $i;           
-        $companies=DB::select("select companies.id AS id, companies.name AS name, companies.description AS description, 
-        AVG(comments.total) AS total 
-        from companies 
-        join comments on companies.id = comments.idcomp 
-        where comments.salarie >= $i
-        group by companies.name, companies.id, companies.description
-        LIMIT 3")
-        ->paginate(6);
+        $provinces=Prov::all();                    
+        $search = $i;
+        $companies=DB::table('companies')
+                    -> where ('total','>=', $i)
+                    -> whereNotNull('total')
+                    -> simplePaginate(6);
         return view('search', compact('companies'))-> with ([
             'provinces'=>$provinces,
             'search'=>$search,
@@ -86,32 +83,23 @@ class CompanyList extends Controller
     }
 
     public function welcome(){    
-        $companies=DB::select("select companies.id AS comid, companies.name AS comname, companies.description AS comdes, 
-        AVG(comments.total) AS comtot 
-        from companies 
-        join comments on companies.id = comments.idcomp 
-        where comments.validate = 1
-        group by companies.name, companies.id, companies.description         
-        order by AVG(comments.total) DESC
-        LIMIT 3");
+        $companies=DB::table('companies')
+                        -> whereNotNull('total')
+                        -> orderBy('total', 'desc')
+                        -> limit (3)
+                        -> get();
             
-        $companiesbad=DB::select("select companies.id AS comid, companies.name AS comname, companies.description AS comdes, 
-        AVG(comments.total) AS comtot 
-        from companies 
-        join comments on companies.id = comments.idcomp 
-        where comments.validate = 1
-        group by companies.name, companies.id, companies.description         
-        order by AVG(comments.total) ASC
-        LIMIT 3");
+        $companiesbad=DB::table('companies')
+                        -> whereNotNull('total')
+                        -> orderBy('total', 'asc')
+                        -> limit (3)
+                        -> get();
 
-        $companieslast=DB::select("select companies.id AS comid, companies.name AS comname, companies.description AS comdes, 
-        AVG(comments.total) AS comtot 
-        from companies 
-        join comments on companies.id = comments.idcomp 
-        where comments.validate = 1
-        group by companies.name, companies.id, companies.description         
-        order by AVG(companies.created_at) DESC
-        LIMIT 6");
+        $companieslast=DB::table('companies')
+                        -> whereNotNull('total')
+                        -> orderBy('created_at', 'desc')
+                        -> limit (6)
+                        -> get();
         
         return view('welcome')-> with ([
             'companies'=>$companies,
@@ -124,7 +112,7 @@ class CompanyList extends Controller
         $companies=Company::where('id', '=', $i)->get();
         $comments=Comment::where('idcomp', '=', $i)
                         ->where('validate', '=', 1)
-                        ->paginate(4);
+                        ->simplePaginate(4);
         return view('empresa')-> with ([        
         'companies'=>$companies,
         'comments'=>$comments
@@ -142,7 +130,8 @@ class CompanyList extends Controller
         ]);        
     }
 
-    public function insertarempresa(Request $request){        
+    public function insertarempresa(Request $request){   
+        $date = today();     
         $newcompanie = new Company;
         if ($request->filled('newlocat')){
             $newcompanie -> location = $request->newlocat;
@@ -157,6 +146,7 @@ class CompanyList extends Controller
         $newcompanie -> name = $request->namep;
         $newcompanie -> city = $request->prov;
         $newcompanie -> description = $request->descrip;
+        $newcompanie -> created_at = $date;
         $newcompanie -> save();                
         $companies=Company::where('name', '=', $newcompanie -> name)->get(); 
         return view('newcom')-> with ([        
@@ -178,10 +168,22 @@ class CompanyList extends Controller
         ]); 
         }
 
-        public function comentvalidate($id){  
+        public function comentvalidate($id,$comid){ 
+            $mytime = Carbon::now();
             $comments=DB::table('comments')
-                        ->where('id', $id)
+                        ->where('id','=', $id)
                         ->update(array('validate'=>1));
+            $comments=DB::table('comments')
+                        ->where('id','=', $id)
+                        ->update(['updated_at'=> $mytime]);                          
+            $companytotal=DB::table('companies')
+                        ->join('comments', "companies.id", "=", 'comments.idcomp')
+                        ->where('companies.id','=', $comid)
+                        ->where('comments.validate','=', 1)
+                        ->avg('comments.total');                         
+            $companyup=DB::table('companies')
+                        ->where('id','=', $comid)
+                        ->update(['total'=> $companytotal]);            
             return redirect('administrar'); 
         }
 

@@ -27,7 +27,7 @@ Route::get('/listLocations/{id}','App\Http\Controllers\Companylist@listLocations
 
 Route::get('/insertar','App\Http\Controllers\CommentCont@insertarcomentario')->middleware('auth');
 
-Route::post('/buscador','App\Http\Controllers\Companylist@buscar');
+Route::get('/buscador','App\Http\Controllers\Companylist@buscar');
 Route::get('/buscador/ordenas/{i}','App\Http\Controllers\Companylist@orderASC');
 Route::get('/buscador/ordendes/{i}','App\Http\Controllers\Companylist@orderDESC');
 
@@ -41,7 +41,7 @@ Route::get('/seleccionar','App\Http\Controllers\Companylist@empresaselect');
 Route::get('/insertaremp','App\Http\Controllers\Companylist@insertarempresa')->middleware('auth');
 Route::get('/administrar','App\Http\Controllers\Companylist@validarcomentarios')->middleware('auth');
 Route::get('/borrar/{i}','App\Http\Controllers\Companylist@comentborrado')->middleware('auth');;
-Route::get('/validar/{i}','App\Http\Controllers\Companylist@comentvalidate')->middleware('auth');;
+Route::get('/validar/{i}/{comid}','App\Http\Controllers\Companylist@comentvalidate')->middleware('auth');;
 
 
 Auth::routes();
